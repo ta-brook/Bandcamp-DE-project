@@ -1,0 +1,12 @@
+1000000-bandcamp-sales
+tmp
+code
+bandcamp-items-json
+logs
+plugins
+spark-apps
+
+*.env
+*.csv
+*.zip
+*.json

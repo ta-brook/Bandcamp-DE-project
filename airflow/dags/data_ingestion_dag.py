@@ -8,7 +8,6 @@ from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 from google.cloud import storage
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateExternalTableOperator
-from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
 
 AIRFLOW_HOME = os.environ.get('AIRFLOW_HOME', '/opt/airflow')
 
@@ -44,7 +43,7 @@ default_args = {
 }
 
 bandcamp_sale_data = DAG(
-    dag_id="test_download_dag_dev",
+    dag_id="Ingestion_dag_dev",
     schedule_interval="@once",
     default_args=default_args,
     start_date=datetime(2020, 9, 1),
@@ -90,7 +89,7 @@ with bandcamp_sale_data:
     #     bash_command=f'rm {LOCAL_DATA_PATH}/bandcamp_data.csv'
     # )
 
-    upload_script_ttask = PythonOperator(
+    upload_script_task = PythonOperator(
             task_id='upload_script_task',
             python_callable=upload_to_gcs,
             op_kwargs={
@@ -100,35 +99,29 @@ with bandcamp_sale_data:
             },
         )
 
-    preprocessing_task = BashOperator(
-        task_id='spark_preprocessing_task',
-        bash_command=f'python {AIRFLOW_HOME}/dags/spark.py \
-        --AIRFLOW_HOME={AIRFLOW_HOME} \
-        --input_path={AIRFLOW_HOME}/data/*.csv \
-        --output_path={AIRFLOW_HOME}/data/raw/'
-    )
+    # preprocessing_task = BashOperator(
+    #     task_id='spark_preprocessing_task',
+    #     bash_command=f'python {AIRFLOW_HOME}/dags/spark.py \
+    #     --AIRFLOW_HOME={AIRFLOW_HOME} \
+    #     --input_path={AIRFLOW_HOME}/data/*.csv \
+    #     --output_path={AIRFLOW_HOME}/data/raw/'
+    # )
 
-    preprocessing_task = BashOperator(
-        task_id='spark_preprocessing_task',
-        bash_command=f'python {AIRFLOW_HOME}/dags/spark.py \
-        --input_path={AIRFLOW_HOME}/data/*.csv \
-        --output_path={AIRFLOW_HOME}/data/raw/'
-    )
 
 # $ docker exec -it docker_spark_1 spark-submit --master spark://spark:7077 /usr/local/spark/app/hello-world.py /usr/local/spark/resources/data/airflow.cfg
 
-    spark_job = SparkSubmitOperator(
-    task_id="spark_job",
-    application=f"{AIRFLOW_HOME}/dags/spark.py", # Spark application path created in airflow and spark cluster
-    name="hello-world-module",
-    conn_id="spark_default",
-    verbose=1,
-    conf={"spark.master":"spark://spark:7077"},
-    application_args=["--input_path={AIRFLOW_HOME}/data/*.csv", "--output_path={AIRFLOW_HOME}/data/raw/"],
-    )
+    # spark_job = SparkSubmitOperator(
+    # task_id="spark_job",
+    # application=f"{AIRFLOW_HOME}/dags/spark.py", # Spark application path created in airflow and spark cluster
+    # name="hello-world-module",
+    # conn_id="spark_default",
+    # verbose=1,
+    # conf={"spark.master":"spark://spark:7077"},
+    # application_args=["--input_path={AIRFLOW_HOME}/data/*.csv", "--output_path={AIRFLOW_HOME}/data/raw/"],
+    # )
 
 # --input_path=gs://bandcamp_sale_data_lake_tensile-ethos-349916/data/raw/bandcamp_data.csv
 # --output_path=gs://bandcamp_sale_data_lake_tensile-ethos-349916/data/processed/
 
-    # pwd_task >> ls_task >> download_task >> ls_data_task >> upload_data_lake >> upload_script_ttask
-    pwd_task >> ls_task >> download_task >> ls_data_task >> spark_job
+    pwd_task >> ls_task >> download_task >> ls_data_task >> upload_data_lake >> upload_script_task
+    # pwd_task >> ls_task >> download_task >> ls_data_task >> spark_job

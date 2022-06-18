@@ -49,33 +49,33 @@ resource "google_bigquery_dataset" "dataset" {
 }
 
 
-resource "google_dataproc_cluster" "bandcamp-cluster" {
-  name     = "bandcamp-cluster"
-  region   = var.region
-  graceful_decommission_timeout = "120s"
+# resource "google_dataproc_cluster" "bandcamp-cluster" {
+#   name     = "bandcamp-cluster"
+#   region   = var.region
+#   graceful_decommission_timeout = "120s"
 
- cluster_config {
-    staging_bucket = "dataproc-staging-bucket"
-    gce_cluster_config {
-      zone = "${var.region}-b"
-    }
+#  cluster_config {
+#     staging_bucket = "dataproc-staging-bucket"
+#     gce_cluster_config {
+#       zone = "${var.region}-b"
+#     }
     
 
-    master_config {
-      num_instances = 1
-      machine_type  = var.machine_type
-      disk_config {
-        boot_disk_type    = "pd-standard"
-        boot_disk_size_gb = 30
-      }
-    }
+#     master_config {
+#       num_instances = 1
+#       machine_type  = var.machine_type
+#       disk_config {
+#         boot_disk_type    = "pd-standard"
+#         boot_disk_size_gb = 30
+#       }
+#     }
 
-    worker_config {
-      num_instances    = 2
-      machine_type     = var.machine_type
-      disk_config {
-        boot_disk_size_gb = 30
-      }
-    }
-  }
-}
+#     worker_config {
+#       num_instances    = 2
+#       machine_type     = var.machine_type
+#       disk_config {
+#         boot_disk_size_gb = 30
+#       }
+#     }
+  # }
+# }

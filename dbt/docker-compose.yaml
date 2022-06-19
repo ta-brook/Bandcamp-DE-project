@@ -1,0 +1,11 @@
+  version: '3'
+  services:
+    bandcamp:
+      build:
+        context: .
+        target: dbt-bigquery
+      image: dbt/bigquery
+      volumes:
+        - .:/usr/app
+        - ~/.dbt/bandcamp/:/root/.dbt/
+        - ~/.google/credentials/google_credentials.json:/.google/credentials/google_credentials.json

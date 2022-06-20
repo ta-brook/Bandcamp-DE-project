@@ -1,0 +1,13 @@
+
+version: 2
+
+sources:
+  - name: staging
+    database: bandcamp-project-353704
+    schema: bandcamp_sale_all_data
+
+    tables:
+      - name: bandcamp_data
+
+models:
+  - name: stg_bandcamp_data

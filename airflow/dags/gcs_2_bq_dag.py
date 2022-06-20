@@ -30,11 +30,24 @@ INPUT_FILETYPE = "parquet"
 
 CREATE_EXTERNAL_TABLE = (
     f"""
-    CREATE OR REPLACE EXTERNAL TABLE `{BIGQUERY_DATASET}.external_test_airflow`
+    CREATE OR REPLACE EXTERNAL TABLE 
+        `{BIGQUERY_DATASET}.external_non_part`
     OPTIONS (
       format = 'PARQUET',
       uris = ['gs://{BUCKET}/{DATASET_PATH}/*.parquet']
     );
+    """
+    )
+
+CREATE_INTERNAL_TABLE = (
+    f"""
+    CREATE OR REPLACE TABLE 
+        `{BIGQUERY_DATASET}.bandcamp_data`
+    AS
+        SELECT
+            *
+        FROM
+            `{BIGQUERY_DATASET}.external_non_part`
     """
     )
 
@@ -61,8 +74,8 @@ with DAG(
     )
 
 
-    insert_query_job = BigQueryInsertJobOperator(
-    task_id="create_external_job",
+    insert_external_job = BigQueryInsertJobOperator(
+    task_id="create_ext_non_part_task",
     configuration={
         "query": {
             "query": CREATE_EXTERNAL_TABLE,
@@ -70,7 +83,18 @@ with DAG(
         }
     },
     location="asia-southeast1",
-)
+    )
+
+    insert_internal_job = BigQueryInsertJobOperator(
+    task_id="create_int_non_part_task",
+    configuration={
+        "query": {
+            "query": CREATE_INTERNAL_TABLE,
+            "useLegacySql": False,
+        }
+    },
+    location="asia-southeast1",
+    )
 
     # gcs_2_bq_ext = BigQueryCreateExternalTableOperator(
     # task_id="bigquery_external_table_task",
@@ -88,4 +112,4 @@ with DAG(
     #     }
     # )
 
-    wait_task >>  insert_query_job
+    wait_task >>  insert_external_job >> insert_internal_job

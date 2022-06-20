@@ -2,3 +2,6 @@ version: 2
 
 models:
   - name: dim_datetime
+  - name: dim_art
+  - name: dim_location
+  - name: dim_sell

@@ -18,11 +18,13 @@ SELECT
   CAST(country AS STRING) AS buyer_country,
   CAST(UPPER(country_code) AS STRING) AS buyer_country_code,
 
-  -- art info
+  -- artist info
   CAST(artist_name AS STRING) AS artist_name,
   CAST(album_title AS STRING) AS album_title,
   CAST(item_type AS STRING) AS item_type,
+  {{ get_item_type_description('item_type') }} AS item_type_description,
   CAST(slug_type AS STRING) AS slug_type,
+  {{ get_slug_type_description('slug_type') }} AS slug_type_description,
 
   -- sale info
   CAST(item_price AS NUMERIC) AS seller_price,

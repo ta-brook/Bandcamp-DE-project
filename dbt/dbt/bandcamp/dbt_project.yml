@@ -36,3 +36,10 @@ models:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
+
+seeds: 
+    bandcamp:
+        country_regional_code:
+            +column_types:
+                name: string
+                alpha-2: string

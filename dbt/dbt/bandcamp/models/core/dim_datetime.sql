@@ -9,6 +9,7 @@ WITH bandcampdatetime AS
 )
 
 SELECT
+  id,
   buy_datetime,
   EXTRACT( DAYOFWEEK FROM buy_datetime) AS dayOfWeek,
   EXTRACT( DAY FROM buy_datetime) AS dayOfMonth,

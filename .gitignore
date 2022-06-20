@@ -6,6 +6,8 @@ logs
 plugins
 spark-apps
 
+!dbt/dbt/bandcamp/seeds/*
+
 *.env
 *.csv
 *.zip

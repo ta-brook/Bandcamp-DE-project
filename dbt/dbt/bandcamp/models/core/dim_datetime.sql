@@ -1,6 +1,6 @@
 {{ config(materialized = 'table') }}
 
-WITH bandcampdatetime AS 
+WITH stg_bandcamp_data AS 
 (
   SELECT
     *
@@ -17,9 +17,8 @@ SELECT
   EXTRACT( MONTH FROM buy_datetime) AS month,
   EXTRACT( YEAR FROM buy_datetime) AS year
 FROM
-  bandcampdatetime
+  stg_bandcamp_data
   
--- dbt build --m <model.sql> --var 'is_test_run: false'
 {% if var('is_test_run', default=true) %}
 
   limit 100

@@ -5,3 +5,5 @@ models:
   - name: dim_art
   - name: dim_location
   - name: dim_sell
+  - name: dim_key
+  - name: fact_bandcamp

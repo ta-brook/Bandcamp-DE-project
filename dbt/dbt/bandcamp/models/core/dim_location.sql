@@ -1,35 +1,32 @@
 {{ config(materialized = 'table') }}
 
-WITH bandcamplocation AS 
+WITH stg_bandcamp_data AS 
 (
   SELECT
     *
   FROM 
     {{ ref('stg_bandcamp_data') }}
-)
+),
 
-WITH regionalcode AS
+regional_code AS
 (
-    SELECT
-        *
-    FROM
-        {{ ref('country_regional_code') }}
+  SELECT
+      *
+  FROM
+      {{ ref('country_regional_code') }}
 )
 
 SELECT
-    bl.id AS id
-    bl.buyer_country AS country,
-    bl.buyer_country_code AS country_code,
-    COALESCE(`rl.region`, 'NA') AS region,
-    COALESCE(`rl.sub-region`, 'NA') AS sub_region,
-
+  stg_data.id AS id,
+  stg_data.buyer_country AS country,
+  stg_data.buyer_country_code AS country_code,
+  COALESCE(rg_code.region, 'NA') AS region,
+  COALESCE(rg_code.sub_region, 'NA') AS sub_region
 FROM
-  bandcamplocation AS bl
+  stg_bandcamp_data AS stg_data
+LEFT JOIN regional_code AS rg_code
+  ON  stg_data.buyer_country_code = rg_code.alpha_2
 
-JOIN regionalcode AS rl
-    ON  `bl.buyer_country_code` = `rl.alpha-2`
-
--- dbt build --m <model.sql> --var 'is_test_run: false'
 {% if var('is_test_run', default=true) %}
 
   limit 100

@@ -15,7 +15,7 @@ SELECT
   CAST(unix_timestamp AS timestamp) AS buy_datetime,
 
   -- country info
-  CAST(country AS STRING) AS buyer_country,
+  CAST({{ update_country_name('country')}} AS STRING) AS buyer_country,
   CAST(UPPER(country_code) AS STRING) AS buyer_country_code,
 
   -- artist info
@@ -33,13 +33,22 @@ SELECT
   CAST(amount_paid_usd AS NUMERIC) AS amount_paid_usd
 FROM
   bandcampdata
+WHERE 
+  currency IN (
+    SELECT 
+      AlphabeticCode
+    FROM
+      {{ ref('currency') }}
+    WHERE 
+      AlphabeticCode IS NOT NULL
+  )
+  AND
+  country  IN (
+    SELECT 
+      name
+    FROM 
+      {{ ref('country_regional_code') }}
+  )
 ORDER BY 
   buy_datetime
 
-
--- dbt build --m <model.sql> --var 'is_test_run: false'
-{% if var('is_test_run', default=true) %}
-
-  limit 100
-
-{% endif %}

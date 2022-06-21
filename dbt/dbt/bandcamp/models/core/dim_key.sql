@@ -9,15 +9,10 @@ WITH stg_bandcamp_data AS
 )
 
 SELECT
-  id,
-  artist_name,
-  COALESCE(album_title, 'NA') AS album_title,
-  item_type,
-  item_type_description,
-  slug_type,
-  slug_type_description
+    id,
+    buy_datetime AS ts
 FROM
-  stg_bandcamp_data
+    stg_bandcamp_data
 
 {% if var('is_test_run', default=true) %}
 

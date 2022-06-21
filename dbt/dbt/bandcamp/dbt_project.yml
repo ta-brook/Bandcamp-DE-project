@@ -42,4 +42,9 @@ seeds:
         country_regional_code:
             +column_types:
                 name: string
-                alpha-2: string
+                alpha_2: string
+        currency:
+            +column_types:
+                AlphabeticCode: string
+
+      

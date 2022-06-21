@@ -7,7 +7,7 @@
     case {{ slug_type }}
         when 'a' then 'All albums'
         when 'p' then 'Merch'
-        when 't ' then 'Tracks'
+        when 't' then 'Tracks'
     end
 
 {%- endmacro %}

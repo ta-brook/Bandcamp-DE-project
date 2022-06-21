@@ -31,7 +31,7 @@
         image: dbt/bigquery
         volumes:
           - .:/usr/app # dbt persisting data
-          - ~/.dbt/bandcamp/:/root/.dbt/ # `profile.yml` path
+          - /.dbt/bandcamp/:/root/.dbt/ # `profile.yml` path
           - ~/.google/credentials/google_credentials.json:/.google/credentials/google_credentials.json # google credentials path
         network_mode: host
     ```

@@ -61,6 +61,7 @@ SELECT
     dim_art.slug_type AS slug_type,
     dim_art.slug_type_description AS slug_type_description,
 
+    dim_datetime.hourOfDay AS hourOfDay,
     dim_datetime.dayOfWeek AS dayOfWeek,
     dim_datetime.dayOfMonth AS dayOfMonth
 

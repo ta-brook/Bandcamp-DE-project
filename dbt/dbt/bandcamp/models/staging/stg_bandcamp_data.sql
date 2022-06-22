@@ -43,7 +43,7 @@ WHERE
       AlphabeticCode IS NOT NULL
   )
   AND
-  country  IN (
+  {{ update_country_name('country')}}  IN (
     SELECT 
       name
     FROM 

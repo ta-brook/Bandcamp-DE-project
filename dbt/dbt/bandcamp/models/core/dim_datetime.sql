@@ -11,6 +11,8 @@ WITH stg_bandcamp_data AS
 SELECT
   id,
   buy_datetime,
+  EXTRACT( MINUTE FROM buy_datetime) AS minutOfDay,
+  EXTRACT( HOUR FROM buy_datetime) AS hourOfDay,
   EXTRACT( DAYOFWEEK FROM buy_datetime) AS dayOfWeek,
   EXTRACT( DAY FROM buy_datetime) AS dayOfMonth,
   EXTRACT( WEEK FROM buy_datetime) AS weekOfYear,

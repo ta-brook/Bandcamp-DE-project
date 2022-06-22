@@ -39,7 +39,7 @@ will be added soon..
 
 ### Dashboard
 
-[Dashboard](https://datastudio.google.com/reporting/d145a14a-b4da-4c9b-973b-723fbea5bffb)
+You can access [Dashboard](https://datastudio.google.com/reporting/d145a14a-b4da-4c9b-973b-723fbea5bffb) here.
 ![Bandcamp-dashboard](assets/bandcamp-dashboard.JPG)
 
 ### Goal
@@ -79,21 +79,21 @@ If the data is increased in a siginificant number let's say 1000x then, scale up
 
 ### Insight from the dataset
 
-- Most purchases country by region
-    - American
-    - Europe
-    - Oceania
-    - Asia
-    - Africa
+#### Most purchases country by region
+- American: United States, 397666
+- Europe: United Kingdom, 148551
+- Oceania: Australia, 55637
+- Asia: Japan, 32496
+- Africa: South Africa, 2155
 
-- What time has the highest Purchases in a day
-    -
-- What time has the lowest Purchases in a day
-    -
 
-- Average daily income  and Purchases
-    - Income:
-    - Purchases: 
+#### What time has the highest Purchases in a day
+- 1 PM : 59903 
+
+
+#### What time has the lowest Purchases in a day
+- 5 AM : 24007
+
 
 ## Reproduce this project
 

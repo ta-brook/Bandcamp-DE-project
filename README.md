@@ -31,7 +31,7 @@ What is more to complete?
 
 ### Overview
 
-This project is ingest data from (Bandcamp sale data)[https://components.one/datasets/bandcamp-sales] and create an end-to-end data pipeline. The data would be transformed into daily parquet file and stored in datalake. Next, the daily batch jobs will consume these data, load to datawarehouse, applies transformations, and displays to the dashboard.
+This project is ingest data from [Bandcamp sale data](https://components.one/datasets/bandcamp-sales) and create an end-to-end data pipeline. The data would be transformed into daily parquet file and stored in datalake. Next, the daily batch jobs will consume these data, load to datawarehouse, applies transformations, and displays to the dashboard.
 
 ### Architect
 
@@ -39,8 +39,8 @@ will be added soon..
 
 ### Dashboard
 
-(Dashboard)[https://datastudio.google.com/reporting/d145a14a-b4da-4c9b-973b-723fbea5bffb]
-(Bandcamp-dashboard)[assets/bandcamp-dashboard.JPG]
+[Dashboard](https://datastudio.google.com/reporting/d145a14a-b4da-4c9b-973b-723fbea5bffb)
+[Bandcamp-dashboard](assets/bandcamp-dashboard.JPG)
 
 ### Goal
 
@@ -56,7 +56,7 @@ My mainly goal is to learn more about data engineer work flow/tools. But that no
 
 ### Dataset
 
-The main dataset is (Bandcamp sale data)[https://components.one/datasets/bandcamp-sales] which contain 1,000,000 items from Bandcamp's sales feed between 9/9/2020 and 10/2/2020 and is a slice of the whole dataset of 6.7 million sales. Other dataset: (Country regional code)[https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes] and (Currency)[https://github.com/datasets/currency-codes/blob/master/data/codes-all.csv] is used for cleansing and transformation.
+The main dataset is [Bandcamp sale data](https://components.one/datasets/bandcamp-sales) which contain 1,000,000 items from Bandcamp's sales feed between 9/9/2020 and 10/2/2020 and is a slice of the whole dataset of 6.7 million sales. Other dataset: [Country regional code](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes) and [Currency](https://github.com/datasets/currency-codes/blob/master/data/codes-all.csv) is used for cleansing and transformation.
 
 ### Tools & Techs
 
@@ -115,8 +115,8 @@ The following requirements are needed to reproduce the project:
 
 ## Acknowledgement
 
-This project cannot be completed without this amazing (course)[https://github.com/DataTalksClub/data-engineering-zoomcamp] from (DataTalks.Club)[https://datatalks.club/].
+This project cannot be completed without this amazing [course](https://github.com/DataTalksClub/data-engineering-zoomcamp) from [DataTalks.Club](https://datatalks.club/).
 
 ## ref
 
-- (Data-engineering-zoomcamp)[https://github.com/DataTalksClub/data-engineering-zoomcamp]
+- [Data-engineering-zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp)

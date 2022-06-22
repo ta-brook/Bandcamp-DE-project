@@ -40,7 +40,7 @@ will be added soon..
 ### Dashboard
 
 [Dashboard](https://datastudio.google.com/reporting/d145a14a-b4da-4c9b-973b-723fbea5bffb)
-[Bandcamp-dashboard](assets/bandcamp-dashboard.JPG)
+![Bandcamp-dashboard](assets/bandcamp-dashboard.JPG)
 
 ### Goal
 

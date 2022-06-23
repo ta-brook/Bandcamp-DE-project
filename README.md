@@ -35,7 +35,7 @@ This project is ingest data from [Bandcamp sale data](https://components.one/dat
 
 ### Architect
 
-will be added soon..
+![Architecture](assets/Architect.png)
 
 ### Dashboard
 

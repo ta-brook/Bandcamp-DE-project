@@ -5,6 +5,7 @@ bandcamp-items-json
 logs
 plugins
 spark-apps
+target
 
 !dbt/dbt/bandcamp/seeds/*
 

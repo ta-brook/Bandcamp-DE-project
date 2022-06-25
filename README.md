@@ -111,7 +111,13 @@ The following requirements are needed to reproduce the project:
 
 ### dbt
 
+## Are there any ways to improves this project?
 
+- Build based on VM (this will be added)
+- add test
+- add CI/CD
+- add docs for dbt 
+- create more dimensional model for other used? (maybe we can get more insight from our data)
 
 ## Acknowledgement
 

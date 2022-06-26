@@ -103,13 +103,50 @@ will be added soon..
 
 The following requirements are needed to reproduce the project:
 
+### GCP setup
 
+- Download and install Google [SDK](https://cloud.google.com/sdk/docs/install-sdk) for local setup
+
+### Create account
+
+1. create account with your google email.
+2. Create new project or using 'My first project' that auto created
+3. Go to `service account`
+    - create service account
+    - download `credential.json`
+4. Set env for `credential.json`
+```
+export GOOGLE_APPLICATION_CREDENTIALS="<path/to/your/google_credentials.json>"
+
+# Refresh token/session, and verify authentication
+gcloud auth application-default login
+```
+
+### IAM configuration
+
+not done yet will continue tomorrow
+
+1. go to `IAM & Admin`
+2. grant principal these roles
+    - Bigquery Admin
+    - Compute Admin
+    - Dataproc Admin
+    - Storage Admin
+    - Storage Object Admin
+3. Enable API
+    - 
 
 ### Terraform
 
+more detail [here](https://github.com/ta-brook/terraform)
+
 ### Airflow
 
+waiting for dbt to attached with airflow
+
 ### dbt
+
+trying to put it in airflow docker
 
 ## Are there any ways to improves this project?
 

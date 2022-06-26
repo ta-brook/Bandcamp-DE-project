@@ -103,8 +103,7 @@ with post_transform:
         bash_command=f'echo "Bash connected"'
     )
 
-    # wait_task >> test_task >> create_cluster >> pyspark_task 
     wait_task >> test_task  >> pyspark_task 
-    # wait_task >> test_task  >> pyspark_task 
+
 
 

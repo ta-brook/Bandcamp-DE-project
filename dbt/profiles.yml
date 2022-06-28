@@ -1,0 +1,14 @@
+bandcamp:
+  outputs:
+    dev:
+      dataset: bandcamp_sale_all_data
+      fixed_retries: 1
+      keyfile: /.google/credentials/google_credentials.json
+      location: asia-southeast1
+      method: service-account
+      priority: interactive
+      project: bandcamp-project-353704
+      threads: 4
+      timeout_seconds: 300
+      type: bigquery
+  target: dev

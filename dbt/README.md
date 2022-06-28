@@ -86,4 +86,6 @@ docker compose run \
 docker compose run --entrypoint='bash' bandcamp
 ```
 
+-- dbt build --m <model.sql> --var 'is_test_run: false'
+
 **However I still can't run `dbt docs serve` but any other command is working fine. so, I'll try to figure this out somehow**

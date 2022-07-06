@@ -24,7 +24,7 @@ A ELT Data Engineer project with various of tools: Airflow, Terraform, Docker, S
 *Not Done yet*
 What is more to complete?
 - Move dbt to airflow for completely automate work! [x] Done, next move create dag for those dbt jobs
-- Complete the airflow docker and put everything under one docker-compose env
+- Complete the airflow docker and put everything under one docker-compose env. this one is due to above tho
 - Create bash script for reproducibility in VM
 - Create Guildline 
 - Complete docs

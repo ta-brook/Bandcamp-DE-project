@@ -12,7 +12,7 @@ bandcamp:
       timeout_seconds: 300
       type: bigquery
     prod:
-      dataset: bandcamp_prod
+      dataset: bandcamp_sale_prod
       fixed_retries: 1
       keyfile: /.google/credentials/google_credentials.json
       location: asia-southeast1

@@ -48,6 +48,11 @@ resource "google_bigquery_dataset" "dataset" {
     location   = var.region
 }
 
+resource "google_bigquery_dataset" "dataset_prod" {
+    dataset_id = var.BQ_DATASET_PROD
+    project    = var.project
+    location   = var.region
+}
 
 # resource "google_dataproc_cluster" "bandcamp-cluster" {
 #   name     = "bandcamp-cluster"

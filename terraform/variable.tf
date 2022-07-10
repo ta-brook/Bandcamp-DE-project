@@ -23,6 +23,12 @@ variable "BQ_DATASET" {
     default = "bandcamp_sale_all_data"
 }
 
+variable "BQ_DATASET_PROD" {
+    description = "BigQuery Dataset that raw data (from GCS) will be written to (production)"
+    type = string
+    default = "bandcamp_sale_prod"
+}
+
 variable "machine_type" {
     description = "machine type that dataproc will created for you"
     type = string

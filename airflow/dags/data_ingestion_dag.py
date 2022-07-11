@@ -99,14 +99,6 @@ with bandcamp_sale_data:
             },
         )
 
-    # preprocessing_task = BashOperator(
-    #     task_id='spark_preprocessing_task',
-    #     bash_command=f'python {AIRFLOW_HOME}/dags/spark.py \
-    #     --AIRFLOW_HOME={AIRFLOW_HOME} \
-    #     --input_path={AIRFLOW_HOME}/data/*.csv \
-    #     --output_path={AIRFLOW_HOME}/data/raw/'
-    # )
-
 
 # $ docker exec -it docker_spark_1 spark-submit --master spark://spark:7077 /usr/local/spark/app/hello-world.py /usr/local/spark/resources/data/airflow.cfg
 
@@ -120,8 +112,4 @@ with bandcamp_sale_data:
     # application_args=["--input_path={AIRFLOW_HOME}/data/*.csv", "--output_path={AIRFLOW_HOME}/data/raw/"],
     # )
 
-# --input_path=gs://bandcamp_sale_data_lake_tensile-ethos-349916/data/raw/bandcamp_data.csv
-# --output_path=gs://bandcamp_sale_data_lake_tensile-ethos-349916/data/processed/
-
     pwd_task >> ls_task >> download_task >> ls_data_task >> upload_data_lake >> upload_script_task
-    # pwd_task >> ls_task >> download_task >> ls_data_task >> spark_job

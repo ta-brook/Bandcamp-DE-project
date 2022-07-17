@@ -7,7 +7,7 @@ bandcamp:
       location: asia-southeast1
       method: service-account
       priority: interactive
-      project: bandcamp-project-353704
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
       threads: 4
       timeout_seconds: 300
       type: bigquery

@@ -9,7 +9,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id="dbt_test_dag_dev",
+    dag_id="dbt_transform_dag_dev",
     schedule_interval="@once",
     default_args=default_args,
     start_date=datetime(2020, 9, 1),
@@ -19,17 +19,14 @@ with DAG(
     tags=['bandcamp','test'],
 ) as dag:
 
-    dbt_debug_task = BashOperator(
-        task_id = 'dbt_debug',
-        bash_command= 'cd /dbt && dbt debug'
+    dbt_setup_prod = BashOperator(
+        task_id = 'dbt_setup_prod',
+        bash_command= 'cd /dbt && dbt deps && dbt seed --profiles-dir . --target prod'
     )
 
-    dbt_deps_task = BashOperator(
-        task_id = 'dbt_deps',
-        bash_command= 'cd /dbt && dbt deps'
+    dbt_run_prod = BashOperator(
+        task_id = 'dbt_run_prod',
+        bash_command= 'cd /dbt && dbt run --profiles-dir . --target prod'
     )
 
-    dbt_run_test_task = BashOperator(
-        task_id = 'dbt_run_test',
-        bash_command= 'cd /dbt && dbt run'
-    )
+    dbt_setup_prod >> dbt_run_prod

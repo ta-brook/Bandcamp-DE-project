@@ -20,10 +20,13 @@ with DAG(
 
     test_dbt_task = BashOperator(
         task_id = 'dbt_test',
-        bash_command= 'cd /dbt && dbt debug'
+        bash_command= 'cd /dbt && dbt debug --profiles-dir .'
     )
 
     test_dbt_2_task = BashOperator(
         task_id = 'dbt_2_test',
         bash_command= 'cd /dbt && dbt deps'
     )
+
+
+    test_dbt_task >> test_dbt_2_task 

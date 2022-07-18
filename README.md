@@ -19,20 +19,10 @@ A ELT Data Engineer project with various of tools: Airflow, Terraform, Docker, S
 
 ## Description
 
-### Status
-
-*Not Done yet*
-What is more to complete?
-- Move dbt to airflow for completely automate work! [x] Done, next move create dag for those dbt jobs 
-    - raw -> gcs (split date) -> bq (each day) -> dbt (each day append?)
-- Complete the airflow docker and put everything under one docker-compose env. this one is due to above tho
-- Create bash script for reproducibility in VM
-- Create Guideline 
-- Complete docs
 
 ### Overview
 
-This project is ingest data from [Bandcamp sale data](https://components.one/datasets/bandcamp-sales) and create an end-to-end data pipeline. The data would be transformed into daily parquet file and stored in datalake. Next, the daily batch jobs will consume these data, load to datawarehouse, applies transformations, and displays to the dashboard.
+This project is ingest data from [Bandcamp sale data](https://components.one/datasets/bandcamp-sales) and create an end-to-end data pipeline. The data would be transformed into daily parquet file and stored in data lake. Next, the daily batch jobs will consume these data, load to data warehouse, applies transformations, and displays to the dashboard.
 
 ### Architect
 
@@ -42,6 +32,12 @@ This project is ingest data from [Bandcamp sale data](https://components.one/dat
 
 You can access [Dashboard](https://datastudio.google.com/reporting/d145a14a-b4da-4c9b-973b-723fbea5bffb) here.
 ![Bandcamp-dashboard](assets/bandcamp-dashboard.JPG)
+
+### DAGS
+
+Some dag are depend on another dag [ExternalTaskSensor](https://airflow.apache.org/docs/apache-airflow/1.10.3/_api/airflow/sensors/external_task_sensor/index.html)
+
+![dags](assets/dags.JPG)
 
 ### Goal
 
@@ -61,8 +57,6 @@ The main dataset is [Bandcamp sale data](https://components.one/datasets/bandcam
 
 ### Tools & Techs
 
-*maybe add more describtion/link idk*
-
 - Cloud - Google Cloud Platform
 - Infrastructure as Code software - Terraform
 - Containerization - Docker, Docker Compose
@@ -76,7 +70,7 @@ The main dataset is [Bandcamp sale data](https://components.one/datasets/bandcam
 
 ### Scalability
 
-If the data is increased in a siginificant number let's say 1000x then, scale up dataproc cluster in horizontally (add more worker/node) or both vertically and horizontally (add more worker and improve performance) is a good idea too.
+If the data is increased in a significant number let's say 1000x then, scale up dataproc cluster in horizontally (add more worker/node) or both vertically and horizontally (add more worker and improve performance) is a good idea too.
 
 ### Insight from the dataset
 
@@ -151,16 +145,21 @@ trying to put it in airflow docker
 
 ## Are there any ways to improves this project?
 
-- Build based on VM (this will be added)
+- Build based on VM 
 - add test
 - add CI/CD
 - add docs for dbt 
 - create more dimensional model for other used? (maybe we can get more insight from our data)
 
+
 ## Acknowledgement
 
 This project cannot be completed without this amazing [course](https://github.com/DataTalksClub/data-engineering-zoomcamp) from [DataTalks.Club](https://datatalks.club/).
 
+Also [Dockerfile](https://github.com/ankurchavda/streamify/blob/main/airflow/Dockerfile) from [streamify](https://github.com/ankurchavda/streamify) that can run dbt with airflow.
+
 ## ref
 
 - [Data-engineering-zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp)
+- [streamify](https://github.com/ankurchavda/streamify)
+- [dphi](https://dphi.tech/community/)

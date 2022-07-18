@@ -99,17 +99,4 @@ with bandcamp_sale_data:
             },
         )
 
-
-# $ docker exec -it docker_spark_1 spark-submit --master spark://spark:7077 /usr/local/spark/app/hello-world.py /usr/local/spark/resources/data/airflow.cfg
-
-    # spark_job = SparkSubmitOperator(
-    # task_id="spark_job",
-    # application=f"{AIRFLOW_HOME}/dags/spark.py", # Spark application path created in airflow and spark cluster
-    # name="hello-world-module",
-    # conn_id="spark_default",
-    # verbose=1,
-    # conf={"spark.master":"spark://spark:7077"},
-    # application_args=["--input_path={AIRFLOW_HOME}/data/*.csv", "--output_path={AIRFLOW_HOME}/data/raw/"],
-    # )
-
     pwd_task >> ls_task >> download_task >> ls_data_task >> upload_data_lake >> upload_script_task >> rm_task

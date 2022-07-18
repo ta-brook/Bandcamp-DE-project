@@ -78,13 +78,13 @@ with post_transform:
         mode = 'reschedule'
     )
 
-    # create_cluster = DataprocCreateClusterOperator(
-    #     task_id="create_cluster",
-    #     project_id=PROJECT_ID,
-    #     cluster_config=CLUSTER_CONFIG,
-    #     region=REGION,
-    #     cluster_name=CLUSTER_NAME,
-    # )
+    create_cluster = DataprocCreateClusterOperator(
+        task_id="create_cluster",
+        project_id=PROJECT_ID,
+        cluster_config=CLUSTER_CONFIG,
+        region=REGION,
+        cluster_name=CLUSTER_NAME,
+    )
 
     pyspark_task = DataprocSubmitJobOperator(
         task_id="pyspark_task", job=PYSPARK_JOB, region=REGION, project_id=PROJECT_ID

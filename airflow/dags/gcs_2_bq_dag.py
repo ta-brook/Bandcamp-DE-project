@@ -19,12 +19,12 @@ from airflow.providers.google.cloud.operators.bigquery import (
 
 AIRFLOW_HOME = os.environ.get('AIRFLOW_HOME', '/opt/airflow/')
 BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'bandcamp_sale_all_data')
+BIGQUERY_PROD_DATASET = os.environ.get("BIGQUERY_DATASET", 'bandcamp_sale_prod')
 
 PROJECT_ID = os.environ.get("GCP_PROJECT_ID")
 BUCKET = os.environ.get("GCP_GCS_BUCKET")
 
 DATASET_PATH = "data/preprocessed"
-NEW_DATASET = 'bandcamp_sale'
 INPUT_PART = "processed"
 INPUT_FILETYPE = "parquet"
 
@@ -50,6 +50,7 @@ CREATE_INTERNAL_TABLE = (
             `{BIGQUERY_DATASET}.external_non_part`
     """
     )
+
 
 default_args = {
     "owner": "airflow"
@@ -96,20 +97,6 @@ with DAG(
     location="asia-southeast1",
     )
 
-    # gcs_2_bq_ext = BigQueryCreateExternalTableOperator(
-    # task_id="bigquery_external_table_task",
-    #     table_resource={
-    #         "tableReference": {
-    #             "projectId": PROJECT_ID,
-    #             "datasetId": BIGQUERY_DATASET,
-    #             "tableId": f"external_bandcamp_sale",
-    #         },
-    #         "externalDataConfiguration": {
-    #             'autodetect':True,
-    #             "sourceFormat": f"{INPUT_FILETYPE.upper()}",
-    #             "sourceUris": [f"gs://{DATASET}/{PROCESSED}/*.{INPUT_FILETYPE}"],
-    #         },
-    #     }
-    # )
+
 
     wait_task >>  insert_external_job >> insert_internal_job

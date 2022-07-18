@@ -84,10 +84,10 @@ with bandcamp_sale_data:
             },
         )
     
-    # rm_task = BashOperator(
-    #     task_id='rm_data_task',
-    #     bash_command=f'rm {LOCAL_DATA_PATH}/bandcamp_data.csv'
-    # )
+    rm_task = BashOperator(
+        task_id='rm_data_task',
+        bash_command=f'rm {LOCAL_DATA_PATH}/bandcamp_data.csv'
+    )
 
     upload_script_task = PythonOperator(
             task_id='upload_script_task',
@@ -112,4 +112,4 @@ with bandcamp_sale_data:
     # application_args=["--input_path={AIRFLOW_HOME}/data/*.csv", "--output_path={AIRFLOW_HOME}/data/raw/"],
     # )
 
-    pwd_task >> ls_task >> download_task >> ls_data_task >> upload_data_lake >> upload_script_task
+    pwd_task >> ls_task >> download_task >> ls_data_task >> upload_data_lake >> upload_script_task >> rm_task

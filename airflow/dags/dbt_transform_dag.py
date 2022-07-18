@@ -10,7 +10,7 @@ default_args = {
 
 with DAG(
     dag_id="dbt_transform_dag_dev",
-    schedule_interval="@once",
+    schedule_interval="0 8 * * *",
     default_args=default_args,
     start_date=datetime(2020, 9, 1),
     end_date=datetime(2020, 10, 10),
@@ -26,7 +26,7 @@ with DAG(
 
     dbt_run_prod = BashOperator(
         task_id = 'dbt_run_prod',
-        bash_command= 'cd /dbt && dbt run --profiles-dir . --target prod'
+        bash_command= "cd /dbt && dbt run --profiles-dir . --var 'is_test_run: false'  --target prod"
     )
 
     dbt_setup_prod >> dbt_run_prod
